@@ -6,7 +6,13 @@ from controllers.book_controller import BookController
 
 app = Flask(__name__)
 # Configure the database URI (replace with your actual database URI)
-@@ -21,38 +22,51 @@ def home():
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
+db.init_app(app)
+migrate = Migrate(app, db)
+
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the Book Management API!"})
 
 @app.route('/books')
 def get_books():
