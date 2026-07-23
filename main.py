@@ -8,13 +8,9 @@ app = Flask(__name__)
 # Configure the database URI (replace with your actual database URI)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-<<<<<<< HEAD
-
-=======
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Change this to a secure key in production
 
 # Initialize the database with the Flask app
->>>>>>> schema
 db.init_app(app)
 ma.init_app(app)
 jwt.init_app(app)
@@ -30,12 +26,9 @@ def home():
 @app.route('/books')
 def get_books():
     books = BookController.get_all_books()
-<<<<<<< HEAD
-    return jsonify([book.to_dict() for book in books])
-=======
+
     return jsonify(books_schema.dump(books))
 
->>>>>>> schema
 
 @app.route('/books/<int:book_id>')
 def get_book(book_id):
