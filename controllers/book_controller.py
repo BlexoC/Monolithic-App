@@ -1,8 +1,7 @@
-
 # this is where we will define the logic for handling book-related requests - controller layer
 from models.book import Book 
 from extensions import db
-from flask import jsonify
+
 class BookController: 
     # Define a method to get all books from the database
     @classmethod
@@ -16,7 +15,7 @@ class BookController:
         new_book = Book(title=book_data["title"], author=book_data["author"])
         db.session.add(new_book)
         db.session.commit()
-        return jsonify({"id": new_book.id, "title": new_book.title, "author": new_book.author}), 201
+        return new_book  # return the ORM object; the route decides how to serialize it
 
     # Define a method that retrieves a book by its ID from the database
     @classmethod
