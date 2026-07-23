@@ -13,11 +13,8 @@ class Book(classModel):
 
     def  __repr__(self): # Define the string representation of the Book object for debugging purposes
         return f"<Book {self.title} by {self.author}>"
-<<<<<<< HEAD
     
-    def to_dict(self):
-        return {"id": self.id, "title": self.title, "author": self.author}
-=======
+
 
     def to_dict(self):
         # Serialize this Book object into a plain dictionary.
@@ -28,4 +25,3 @@ class Book(classModel):
             "title": self.title,
             "author": self.author,
         }
->>>>>>> schema
