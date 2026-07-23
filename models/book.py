@@ -13,3 +13,6 @@ class Book(classModel):
 
     def  __repr__(self): # Define the string representation of the Book object for debugging purposes
         return f"<Book {self.title} by {self.author}>"
+    
+    def to_dict(self):
+        return {"id": self.id, "title": self.title, "author": self.author}

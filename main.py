@@ -7,6 +7,8 @@ from controllers.book_controller import BookController
 app = Flask(__name__)
 # Configure the database URI (replace with your actual database URI)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db.init_app(app)
 migrate = Migrate(app, db)
 
@@ -17,7 +19,7 @@ def home():
 @app.route('/books')
 def get_books():
     books = BookController.get_all_books()
-    return jsonify(books)
+    return jsonify([book.to_dict() for book in books])
 
 @app.route('/books/<int:book_id>')
 def get_book(book_id):
